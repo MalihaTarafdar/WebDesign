@@ -2,14 +2,15 @@
 <html>
 <head>
 	<title>CSS Example</title>
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
 	<style>
-		body {
-			background-color: gray;
-			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		* {
+			font-family: 'Titillium Web', sans-serif;
 		}
 		h1 {
 			border: 4px;
 			border-style: double;
+			text-align: center;
 		}
 		p {
 			color: blue;
@@ -19,26 +20,34 @@
 			margin: 10px;
 			padding: 10px;
 			float: left;
-			width: 200px;
+			width: 500px;
+		}
+		a {
+			display: block;
+			float: none;
+			color: purple;
+		}
+		a-div {
+			width: 500px;
+			padding: 10px;
+			margin: 10px;
 		}
 	</style>
 </head>
 <body>
-	<h1>CSS Example</h1>
-	<!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quae odio nemo maxime ad. Sequi dolorem ducimus est ex. Blanditiis consectetur eos obcaecati veritatis velit fugiat rem, nesciunt aliquam nemo a doloremque odio quod sed assumenda delectus! Aperiam esse velit consequatur molestiae quo eaque! At numquam neque corporis quam magni.</p> -->
-	<img src="https://i.ytimg.com/vi/MPV2METPeJU/maxresdefault.jpg" width="200px">
+	<nav>Navigation bar</nav>
+	<h1>Fonts Example</h1>
+	<p id="cls">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti beatae est, perferendis officia exercitationem hic optio nemo illum nulla dignissimos quidem laborum molestias. Quis aut voluptate quod itaque, fuga deserunt doloribus corrupti consequuntur cum ipsam porro praesentium dolorum, perspiciatis laborum. Corporis velit quis esse iusto quisquam consequatur enim pariatur ex, asperiores modi quia labore nesciunt provident a architecto soluta eligendi molestias ducimus consectetur perspiciatis delectus sunt numquam cumque. Nam saepe voluptates numquam rem blanditiis ad beatae odit, sequi deserunt officiis, ab dolores, tempore quibusdam sed expedita. Nulla aspernatur est, dolorum accusamus laudantium molestiae laborum, in quo numquam ea odit voluptas.</p>
+	<p id="cls">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti beatae est, perferendis officia exercitationem hic optio nemo illum nulla dignissimos quidem laborum molestias. Quis aut voluptate quod itaque, fuga deserunt doloribus corrupti consequuntur cum ipsam porro praesentium dolorum, perspiciatis laborum. Corporis velit quis esse iusto quisquam consequatur enim pariatur ex, asperiores modi quia labore nesciunt provident a architecto soluta eligendi molestias ducimus consectetur perspiciatis delectus sunt numquam cumque. Nam saepe voluptates numquam rem blanditiis ad beatae odit, sequi deserunt officiis, ab dolores, tempore quibusdam sed expedita. Nulla aspernatur est, dolorum accusamus laudantium molestiae laborum, in quo numquam ea odit voluptas.</p>
 	<br>
-	<a href="www.google.com" target="_blank">Here is a link</a>
-	<h3>Colors</h3>
-	<ul>
-		<li>red</li>
-		<li>green</li>
-		<li>blue</li>
-	</ul>
-	<hr>
-	<iframe width="280" height="158" src="https://www.youtube.com/embed/hfzSedylBog" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	<br>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora qui iure animi optio labore dolorem enim tenetur consectetur dolor soluta deserunt ex doloremque rem sed inventore quae, laboriosam iusto in. Fuga, illo. Veniam, sunt. Voluptatum soluta repellat magnam facere dolorem provident sequi mollitia hic autem exercitationem, adipisci nostrum eos iste.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora qui iure animi optio labore dolorem enim tenetur consectetur dolor soluta deserunt ex doloremque rem sed inventore quae, laboriosam iusto in. Fuga, illo. Veniam, sunt. Voluptatum soluta repellat magnam facere dolorem provident sequi mollitia hic autem exercitationem, adipisci nostrum eos iste.</p>
+	<div class="a-div">
+		<a href="www.google.com" id="button" target="_blank">click me</a>
+	</div>
+	<p>
+		Click 
+		<a href="apple.com" id="inside" target="_blank">here</a>
+		to continue.
+	</p>
+	<footer>footer</footer>
 </body>
 </html>
