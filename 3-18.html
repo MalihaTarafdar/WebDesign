@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Titillium+Web&display=swap" rel="stylesheet">
+	<title>Responsive Website 3-18</title>
+	<style>
+		* {
+			font-family: 'Titillium Web', sans-serif;
+		}
+		body {
+			background-color: rgb(195, 250, 242);
+		}
+		h1 {
+			text-align: center;
+			font-family: "Bebas Neue", cursive;
+		}
+		img, iframe {
+			margin: auto;
+			width: 95%;
+		}
+		#container {
+			margin: auto;
+			width: 100%;
+		}
+		.item {
+			float: left;
+			width: 25%;
+			height: 350px;
+			margin: 2%;
+			padding: 1%;
+			border: 1px solid black;
+		}
+		@media screen and (max-width: 800px) {
+			.item {
+				width: 40%;
+			}
+		}
+		@media screen and (max-width: 500px) {
+			.item {
+				width: 90%;
+				float: none;
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1>Responsive Website 3-18</h1>
+	<div id="container">
+		<div class="item">
+			<p>Dogs are great.</p>
+			<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur temporibus, quaerat quibusdam placeat eaque quis quos numquam culpa consequuntur nam libero quia voluptates quam vero explicabo a ipsa est. Ratione nihil molestiae quisquam provident, unde modi amet et quod. Ducimus!</p>
+		</div>
+		<div class="item">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/a6KGPBflhiM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+		<div class="item">
+			<img src="https://cdn3-www.dogtime.com/assets/uploads/2018/10/puppies-cover.jpg" alt="a puppy">
+		</div>
+	</div>
+</body>
+</html>
