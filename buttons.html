@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Buttons</title>
+</head>
+<body>
+	<script>
+		function changeImage(id) {
+			let url;
+			switch (id) {
+				case "beach": url = "https://source.unsplash.com/512x512/?beach"; //gets random image with keyword "beach"
+					break;
+				case "mountain": url = "https://source.unsplash.com/512x512/?mountain"; //gets random image with keyword "mountain"
+					break;
+				default: url = "https://source.unsplash.com/512x512/?landscape"; //gets random image with keyword "landscape"
+					break;
+			}
+			//sets the src to the image retrieved
+			fetch(url).then((response) => {
+				document.getElementById('main-img').src = response.url;
+			});
+		}
+		changeImage(); //sets the image when page is loaded
+	</script>
+
+	<h1>Buttons</h1>
+	<p>Clicking the buttons changes the image to a random one from unsplash.com using keywords "beach" and "mountain" depending on the button clicked. There is a slight delay when the image is changed.</p>
+	<button id="beach" onclick="changeImage(this.id);">Beach</button>
+	<button id="mountain" onclick="changeImage(this.id);">Mountain</button>
+	<br>
+	<br>
+	<img id="main-img" alt="landscape">
+</body>
+</html>
