@@ -1,0 +1,32 @@
+body {
+  background-color: #1E2021;
+  color: white;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 400px;
+}
+
+
+/* Element | file:///Users/maliha/Desktop/Projects/WebDesign/memory-game/index.html */
+
+.grid>img:nth-child(1) {
+  border-top-style: solid;
+  border-top-width: 0px;
+}
+
+
+/* Element | file:///Users/maliha/Desktop/Projects/WebDesign/memory-game/index.html */
+
+body {
+  border-top-style: solid;
+  border-top-width: 0px;
+  font-size: 21px;
+  line-height: 0.4;
+  letter-spacing: 0.033em;
+  font-weight: 100;
+  font-style: normal;
+}
