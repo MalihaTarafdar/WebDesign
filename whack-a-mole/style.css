@@ -1,0 +1,34 @@
+:root {
+	--cell-size: 200px;
+	--border-size: 3px;
+	--row-cells: 3;
+}
+
+body {
+  background-color: #3a3d3f;
+  color: white;
+}
+
+.cell {
+	width: 200px;
+	height: 200px;
+	border: var(--border-size) solid black;
+}
+
+.grid {
+	display: grid;
+	grid-template-rows: repeat(3, var(--cell-size));
+	grid-template-columns: repeat(3, var(--cell-size));
+	justify-self: center;
+	align-self: center;
+	row-gap: calc(var(--border-size) * 2);
+	column-gap: calc(var(--border-size) * 2);
+	width: calc(var(--cell-size) * var(--row-cells) + var(--border-size) * var(--row-cells) * 2);
+	height: calc(var(--cell-size) * var(--row-cells) + var(--border-size) * var(--row-cells) * 2);
+	border: var(--border-size) solid black;
+}
+
+.mole {
+	background-image: url(./mole.png);
+	background-size: cover;
+}
