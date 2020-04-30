@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Budget</title>
+	<style>
+		:root {
+			--background-color: white;
+			--text-color: black;
+			--highlight-color: lightgray;
+			--hover-color: #e4e4e4;
+			--border-color: gray;
+		}
+
+		body {
+			font-family: "Titillium Web", sans-serif;
+			background-color: var(--background-color);
+			color: var(--text-color)
+		}
+		h1 {
+			margin: auto;
+			width: 80%;
+			text-align: center;
+			font-family: "Bebas Neue", cursive;
+			padding: 10px 0px 50px 0px;
+		}
+
+		table {
+			margin: auto;
+			width: 50%;
+			border-collapse: collapse;
+		}
+		td {
+			font-size: medium;
+		}
+		th, td {
+			text-align: left;
+			text-transform: capitalize;
+			padding: 10px;
+			border: 1px solid var(--border-color);
+		}
+
+		tr:nth-child(odd) {
+			background-color: var(--highlight-color);
+		}
+		th, tr:last-child > td {
+			font-size: larger;
+			font-family: "Bebas Neue", cursive;
+			font-weight: bold;
+		}
+		tr:not(:first-child):hover {
+			transition: 0.3s;
+			background-color: var(--hover-color);
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--background-color: #1e2021;
+				--text-color: white;
+				--highlight-color: #3f4142;
+				--hover-color: #2f3233;
+				--border-color: #7e7e7e;
+			}
+		}
+	</style>
+</head>
+<body>
+	<h1>Budget</h1>
+
+	<table>
+		<tr>
+			<th>Expense</th>
+			<th>Cost</th>
+		</tr>
+	</table>
+
+	<script>
+		const table = document.querySelector('table')
+
+		let expenses = new Object()
+		expenses['rent'] = 1500
+		expenses['car payment'] = 200
+		expenses['phone payment'] = 100
+		expenses['gas payment'] = 50
+		expenses['internet'] = 40
+		expenses['student loan'] = 300
+		expenses['total'] = 0
+
+		for (let expense in expenses) {
+			const tr = document.createElement('tr')
+			let tdExpense = document.createElement('td')
+			tdExpense.innerHTML = expense;
+			let tdCost = document.createElement('td')
+			tdCost.innerHTML = expenses[expense]
+
+			tr.appendChild(tdExpense)
+			tr.appendChild(tdCost)
+			table.appendChild(tr)
+
+			expenses['total'] += expenses[expense]
+		}
+	</script>
+</body>
+</html>
