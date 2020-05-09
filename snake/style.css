@@ -1,0 +1,58 @@
+:root {
+	--border-color: white;
+	--border-size: 0.5px;
+	--cell-bg: black;
+	--cell-size: 32px;
+	--rows: 10;
+	--cols: 10;
+	--snake-color: green;
+	--apple-color: red;
+}
+
+.content {
+	margin: auto;
+	width: calc(var(--cell-size) * var(--cols) + 2 * var(--cols) * var(--border-size));
+}
+
+.restart {
+	float: left;
+}
+
+.score-container {
+	float: right;
+}
+
+.grid {
+	margin: auto;
+	display: grid;
+	width: calc(var(--cell-size) * var(--cols) + 2 * var(--cols) * var(--border-size));
+	width: calc(var(--cell-size) * var(--rows) + 2 * var(--rows) * var(--border-size));
+	justify-self: center;
+	align-self: center;
+	grid-template-rows: repeat(var(--rows), var(--cell-size));
+	grid-template-columns: repeat(var(--cols), var(--cell-size));
+	row-gap: calc(var(--border-size) * 2);
+	column-gap: calc(var(--border-size) * 2);
+}
+
+.cell {
+	width: var(--cell-size);
+	height: var(--cell-size);
+	background-color: var(--cell-bg);
+	border: var(--border-size) solid var(--border-color);
+}
+
+.snake {
+	background-color: var(--snake-color);
+}
+
+.apple {
+	background-color: var(--apple-color);
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #252729;
+		color: white;
+	}
+}
