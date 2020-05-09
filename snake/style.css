@@ -1,6 +1,6 @@
 :root {
 	--border-color: white;
-	--border-size: 0.5px;
+	--border-size: 0px;
 	--cell-bg: black;
 	--cell-size: 32px;
 	--rows: 10;
