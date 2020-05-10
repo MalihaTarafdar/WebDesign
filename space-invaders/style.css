@@ -1,0 +1,42 @@
+:root {
+	--rows: 15;
+	--cols: 15;
+	--cell-size: 32px;
+}
+
+.shooter {
+	background-color: blue;
+}
+
+.invader {
+	background-color: purple;
+}
+
+.explosion {
+	background-color: red;
+}
+
+.bullets {
+	background-color: yellow;
+}
+
+.game-over {
+	visibility: hidden;
+}
+
+.grid {
+	margin: auto;
+	display: grid;
+	grid-template-rows: var(--rows);
+	grid-template-columns: var(--cols);
+	width: calc(var(--cell-size) * var(--cols));
+	height: calc(var(--cell-size) * var(--rows));
+	border: 1px solid black;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #252729;
+		color: white;
+	}
+}
