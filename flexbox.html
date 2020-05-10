@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flexbox</title>
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.container {
+			width: 80%;
+		}
+		@media (min-width: 768px) {
+			.container {
+				display: flex;
+				align-items: flex-start; /* stretch is default */
+				justify-content: space-around; /* flex-start is default */
+			}
+		}
+		.container div {
+			border: 1px #ccc solid;
+			padding: 1em;
+		}
+		#box1 {
+			/* flex: 1 2; /* flex-grow flex-shrink flex-basis */
+			order: 3;
+			flex-basis: 20%;
+		}
+		#box2 {
+			/* flex: 1 1; /* flex-grow is like weight in android */
+			order: 1;
+			flex-basis: 20%;
+		}
+		#box3 {
+			/* flex: 2 1; */
+			order: 2;
+			flex-basis: 20%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="box1">
+			<h3>Box One</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, modi.</p>
+		</div>
+		<div id="box2">
+			<h3>Box Two</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In, ratione?</p>
+		</div>
+		<div id="box3">
+			<h3>Box Three</h3>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, quod!</p>
+		</div>
+	</div>
+</body>
+</html>
