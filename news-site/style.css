@@ -1,3 +1,11 @@
+:root {
+	--primary-color: #3d5a80;
+	--secondary-color: #293241;
+	--accent-color: #98c1d9;
+	--text-color: white;
+	--shadow-color: #313131;
+}
+
 body {
 	margin: 0;
 	box-sizing: border-box;
@@ -13,10 +21,15 @@ body {
 	height: 3rem;
 	padding: 0.7em 1em 0.7em 1em;
 
-	background-color: #3d5a80;
-	color: white;
+	background-color: var(--primary-color);
+	color: var(--text-color);
+	box-shadow: 0px 0px 10px 6px var(--shadow-color);
+}
 
-	box-shadow: 0px 4px 12px 6px #313131;
+#nav-underline {
+	margin-top: -3px;
+	height: 3px;
+	background-color: var(--accent-color);
 }
 
 /* logo */
@@ -38,6 +51,7 @@ body {
 .logo > #menu {
 	color: inherit;
 	background-color: transparent;
+	cursor: pointer;
 	border: none;
 }
 
@@ -57,20 +71,17 @@ body {
 #links > button {
 	color: inherit;
 	background-color: transparent;
-
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: 0.5px;
 	font-size: medium;
+	cursor: pointer;
 
 	border: none;
 }
 
-#links > #active {
-	color: #98c1d9;
-}
-
-#links > #selection {
-
+#links > .active {
+	color: var(--accent-color);
+	transition: 0.3s;
 }
 
 /* sign in button */
@@ -78,10 +89,10 @@ button.sign-in {
 	width: 7em;
 	height: 3em;
 
-	color: white;
-	background-color: #293241;
-
+	color: inherit;
+	background-color: var(--secondary-color);
 	font-size: medium;
+	cursor: pointer;
 
 	border: 0px;
 	border-radius: 2em;
