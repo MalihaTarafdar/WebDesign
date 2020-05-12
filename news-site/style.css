@@ -1,7 +1,7 @@
 :root {
 	--primary-color: #3d5a80;
 	--secondary-color: #293241;
-	--accent-color: #98c1d9;
+	--accent-color: #91bad1;
 	--text-color: white;
 	--shadow-color: #313131;
 }
@@ -29,7 +29,7 @@ body {
 #nav-underline {
 	margin-top: -3px;
 	height: 3px;
-	background-color: var(--accent-color);
+	background-color: var(--text-color);
 }
 
 /* logo */
@@ -46,12 +46,18 @@ body {
 .logo > a.name {
 	text-decoration: none;
 	color: inherit;
+	transition: 0.2s ease-in-out;
+}
+
+.logo > a.name:hover {
+	transform: scale(1.08, 1.08);
 }
 
 .logo > #menu {
 	color: inherit;
 	background-color: transparent;
 	cursor: pointer;
+	transition: 0.2s ease-in-out;
 	border: none;
 }
 
@@ -59,8 +65,12 @@ body {
 	font-size: xx-large;
 }
 
-/* navbar links */
-#links {
+.logo > #menu:hover {
+	transform: scale(1.15, 1.15);
+}
+
+/* navbar tabs */
+#tabs {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -68,7 +78,7 @@ body {
 	gap: 1em;
 }
 
-#links > button {
+#tabs > button {
 	color: inherit;
 	background-color: transparent;
 	text-transform: uppercase;
@@ -79,9 +89,25 @@ body {
 	border: none;
 }
 
-#links > .active {
+#tabs > .active {
 	color: var(--accent-color);
-	transition: 0.3s;
+	transition: 0.2s;
+}
+
+#tabs > button:hover {
+	color: var(--accent-color);
+	transition: 0.2s;
+}
+
+#tab-selection {
+	position: absolute;
+	height: 3px;
+	width: 50px;
+	margin-top: -3px;
+	left: 0;
+
+	transition: 0.2s ease-in-out;
+	background-color: var(--accent-color);
 }
 
 /* sign in button */
@@ -93,11 +119,19 @@ button.sign-in {
 	background-color: var(--secondary-color);
 	font-size: medium;
 	cursor: pointer;
+	box-shadow: 0 0 4px 1px var(--secondary-color);
+	transition: 0.3s;
 
-	border: 0px;
+	border-style: none;
+	border: 1px solid rgba(144, 185, 208, 1);
 	border-radius: 2em;
 }
 
+button.sign-in:hover {
+	color: var(--accent-color)
+}
+
+/* ====================RESPONSIVE==================== */
 @media (max-width: 700px) {
 	/* navbar */
 	.logo {
@@ -109,10 +143,10 @@ button.sign-in {
 	.logo > a.name {
 		font-size: x-large;
 	}
-	#links {
+	#tabs {
 		gap: 0;
 	}
-	#links > button {
+	#tabs > button {
 		font-size: small;
 	}
 	button.sign-in {
@@ -122,7 +156,7 @@ button.sign-in {
 
 @media (max-width: 530px) {
 	/* navbar */
-	#links {
+	#tabs {
 		display: none;
 	}
 }
