@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ripple Effect Button</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			background-color: black;
+		}
+		button {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			overflow: hidden;
+
+			padding: 1.1em 1.5em;
+			line-height: 0.5;
+
+			font-size: xx-large;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+
+			color: white;
+			background: linear-gradient(90deg, #0162c8, #55e7fc);
+
+			border-style: none;
+			border-radius: 50px;
+		}
+		span {
+			position: absolute;
+			transform: translate(-50%, -50%);
+			background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+			border-radius: 50%; /* circle */
+			animation: animate 500ms linear;
+		}
+		@keyframes animate {
+			0% {
+				width: 10px;
+				height: 10px;
+			}
+			100% {
+				transform: scale(25);
+			}
+		}
+	</style>
+</head>
+<body>
+	<button>Button</button>
+	<script>
+		const button = document.querySelector('button')
+
+		button.addEventListener('click', animateButtonClick)
+
+		function animateButtonClick(e) {
+			button.removeEventListener('click', animateButtonClick)
+			let span = document.createElement('span')
+			span.style.left = e.clientX - button.getBoundingClientRect().left + 'px'
+			span.style.top = e.clientY - button.getBoundingClientRect().top + 'px'
+			button.appendChild(span)
+			button.onanimationend = () => {
+				button.removeChild(span)
+				button.addEventListener('click', animateButtonClick)
+			}
+		}
+	</script>
+</body>
+</html>
