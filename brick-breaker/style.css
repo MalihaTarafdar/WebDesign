@@ -1,0 +1,14 @@
+body {
+	color: white;
+	background-color: #1e2021;
+}
+
+#gameScreen {
+	color: black;
+	background-color: #b8b8b8;
+	border: 1px solid black;
+}
+
+#ball, .brick {
+	display: none;
+}
