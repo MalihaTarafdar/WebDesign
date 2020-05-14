@@ -2,9 +2,9 @@ import Paddle from './paddle.js'
 import InputHandler from './input.js'
 import Ball from './ball.js'
 
-import { getLevelBricks, level1 } from './levels.js'
+import { getLevelBricks, levels } from './levels.js'
 
-const STATES = Object.freeze({
+export const STATES = Object.freeze({
 	MENU: 'menu',
 	RUNNING: 'running',
 	PAUSED: 'pause',
@@ -19,10 +19,12 @@ export default class Game {
 
 		this.paddle = new Paddle(this)
 		this.ball = new Ball(this)
+		this.bricks = []
 		this.gameObjects = []
 
 		this.state = STATES.MENU
-		this.lives = 1
+		this.lives = 3
+		this.level = -1
 
 		new InputHandler(this, this.paddle)
 	}
@@ -31,16 +33,29 @@ export default class Game {
 		return STATES
 	}
 
+	loseLife() {
+		this.lives--
+		this.ball.reset()
+	}
+
+	startNextLevel() {
+		this.level++
+		this.init()
+		this.ball.reset()
+	}
+
 	//when game is started
 	init() {
-		this.bricks = getLevelBricks(this, level1)
-		this.gameObjects = [this.ball, this.paddle, ...this.bricks]
+		this.bricks = getLevelBricks(this, levels[this.level])
+		this.gameObjects = [this.ball, this.paddle]
 		this.state = STATES.RUNNING
 	}
 
 	draw(ctx) {
-		for (let i = 0; i < this.gameObjects.length; i++) {
-			this.gameObjects[i].draw(ctx)
+		//spread gameobjects and bricks into 1 array
+		let updateObjects = [...this.gameObjects, ...this.bricks]
+		for (let i = 0; i < updateObjects.length; i++) {
+			updateObjects[i].draw(ctx)
 		}
 		if (this.state === STATES.PAUSED) {
 			ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'
@@ -59,7 +74,7 @@ export default class Game {
 			ctx.textAlign = 'center'
 			ctx.fillText('Press SPACE to start', this.width / 2, this.height / 2)
 		} else if (this.state === STATES.GAMEOVER) {
-			ctx.fillStyle = 'rgba(0, 0, 0, 0.75)'
+			ctx.fillStyle = 'rgba(0, 0, 0, 0.85)'
 			ctx.fillRect(0, 0, this.width, this.height)
 
 			ctx.font = '30px Arial'
@@ -70,12 +85,22 @@ export default class Game {
 	}
 
 	update(dt) {
-		if (this.lives <= 0) this.state === STATES.GAMEOVER
+		if (this.lives <= 0) this.state = STATES.GAMEOVER
 		if (this.state != STATES.RUNNING) return
-		for (let i = 0; i < this.gameObjects.length; i++) {
-			this.gameObjects[i].update(dt)
+
+		//spread gameobjects and bricks into 1 array
+		let updateObjects = [...this.gameObjects, ...this.bricks]
+		for (let i = 0; i < updateObjects.length; i++) {
+			updateObjects[i].update(dt)
 		}
-		this.gameObjects = this.gameObjects.filter(obj => !obj.broken)
+
+		this.bricks = this.bricks.filter(brick => !brick.broken)
+
+		//check for level change
+		if (this.bricks.length === 0) {
+			this.startNextLevel()
+			return
+		}
 	}
 
 	togglePause() {

@@ -1,3 +1,5 @@
+import { STATES } from './game.js'
+
 export default class InputHandler {
 	constructor(game, paddle) {
 		this.leftIsDown = false
@@ -16,7 +18,7 @@ export default class InputHandler {
 					game.togglePause()
 					break
 				case ' ':
-					if (game.state === MENU) game.init()
+					if (game.state === STATES.MENU) game.startNextLevel()
 					break
 			}
 		})
