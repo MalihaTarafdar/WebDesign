@@ -1,0 +1,247 @@
+<!-- This tag tells the browser that the docment is HTML5 -->
+<!DOCTYPE html>
+
+<!-- You forgot the <html> opening tag -->
+
+<!-- The head element specifies metadata and any styles or scripts of the document -->
+<head>
+	<!-- The title is the name of the browser tab -->
+	<title> Free Zoom Lighting </title>
+	<!-- The style element allows you to write CSS for HTML elements -->
+	<style>
+		/* This is for the example JavaScript code I wrote */
+		:root {
+			--text-color: black;
+		}
+
+		/* This ruleset changes the font family of the heading to verdana and the font size to 30 pixels */
+		#heading {
+			font-family: verdana;
+			font-size: 30px;
+			color: var(--text-color); /* part of example */
+		}
+
+		/* This ruleset changes the font family of the paragraph to arial and the font size to 20 pixels */
+		#paragraph {
+			font-family: arial;
+			font-size: 20px;
+			color: var(--text-color); /* part of example */
+		}
+
+		/* This ruleset changes the width of the container of the content to be the entire page and centers it */
+		div {
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		/* This gives the form a top margin of 20 pixels, giving some space the buttons and the color form */
+		form {
+			margin-top: 20px;
+			color: var(--text-color); /* part of example */
+		}
+	</style>
+
+	<!-- This script tag enables ads on webpages -->
+	<!-- Google says it should be in the body of the page. From https://support.google.com/adsense/answer/9190028?hl=en:
+		After you get and copy your ad unit code, you need to paste it between the <body> and </body> tags of your page.
+		If you paste the ad code outside the <body> tags it will prevent your ads from appearing correctly. -->
+	<script data-ad-client="ca-pub-9651958142567364" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+<body>
+	<!-- This div is the container for all the content on the page -->
+	<div>
+		<!-- The center element center aligns any text inside it -->
+		<center>
+			<!-- This is the heading for the page -->
+			<h1 id="heading"> Welcome to FreeZoomLighting.com! </h1>
+
+			<!-- This paragraph explains the purpose of the webpage -->
+			<p id="paragraph"> Using the buttons below, change the background of this webpage so that you can adjust your lighting while using any video chatting app. </p>
+
+			<!-- Each of the button elements is a button that executes a JavaScript function when clicked -->
+			<!-- Instead of having a different button for each color, it would be better to have buttons for popular colors
+					and then have a color picker for users that want finer control over the color -->
+			<!-- Also, instead of hardcoding all the buttons and colors,
+				it would be easier to store the color name and HSL value of each in a JavaScript object.
+				That way, the buttons can be created by JavaScript code and you could easily change how many buttons you want or
+				what colors you want those buttons to be  -->
+			<!-- Also, the background color of the button should be the color that the button will set so the user knows what color they are picking -->
+			<button onclick="backgroundColorWhite()"> White </button>
+			<button onclick="backgroundColorRed()"> Red </button>
+			<button onclick="backgroundColorBlue()"> Blue </button>
+			<button onclick="backgroundColorYellow()"> Yellow </button>
+			<button onclick="backgroundColorGreen()"> Green </button>
+			<button onclick="backgroundColorPurple()"> Purple </button>
+			<button onclick="backgroundColorLime()"> Lime </button>
+			<button onclick="backgroundColorOrange()"> Orange </button>
+			<button onclick="backgroundColorHotPink()"> Hot Pink </button>
+			<button onclick="backgroundColorPeach()"> Peach </button>
+			<!-- This element is a break that gives some space between elements -->
+			<br>
+			<!-- This form allows people to request a color to be added -->
+			<form id="form" name="requestform" netlify>
+				<label for="fname">Request a Color:</label>
+				<input type="text" id="fname" name="fname" value="">
+				<input type="submit" value="Submit">
+			</form>
+			<br> <!-- I added for space before my example -->
+		</center>
+	</div>
+
+	<!-- This element contains the JavaScript code for the webpage -->
+	<script>
+
+
+		// Instead of having a different function for each color, it would have been easier to only have 1 function that takes the color as an argument
+		// The color of the text can be dynamically set based on the lightness value of the color
+
+		// For example: pure red in HSL is hsl(0, 100%, 50%)
+		// The last value is the lightness. You could have the text color be black when the lightness of a color is >= 50%,
+		// and white when the lightness is < 50%
+		// Here is some code I wrote to show how this would be done
+		function changeColors(h, s, l) {
+			document.body.style.background = `hsl(${h}, ${s}%, ${l}%)`
+
+			// Instead of this:
+			// document.getElementById("heading").style.color = color;
+			// document.getElementById("paragraph").style.color = color;
+			// document.getElementById("form").style.color = color;
+			// It would be easier to use a CSS variable for the text color of every element
+			// You would set the text color with-  color: var(--text-color)
+			//This way, if you have a lot of elements that have text, you could set all of them with this 1 line:
+			document.documentElement.style.setProperty('--text-color', getForegroundColor(l))
+		}
+		function getForegroundColor(l) {
+			return (l >= 50) ? "black" : "white"
+		}
+
+		// Example for generating buttons
+		// This would allow you to easily change how many buttons you have and what colors those buttons are
+		let colors = {
+			"white": [0, 100, 100],
+			"red": [0, 100, 50],
+			"darkcyan": [180, 100, 27],
+			"deepskyblue": [195, 100, 50],
+			"maroon": [0, 100, 25],
+			"olive": [60, 100, 25]
+			//etc.
+			//alternatively: "white": {h: 0, s: 100, l: 100}
+		}
+		function generateButtonsForPopularColors() {
+			const container = document.querySelector('center') //get the parent element of the buttons
+			for (const c in colors) {
+				//create the button
+				let button = document.createElement('button')
+				button.textContent = c
+
+				const hsl = colors[c]
+				button.onclick = () => changeColors(hsl[0], hsl[1], hsl[2]) //set the click function of the button
+				button.style.backgroundColor = `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)` //change the button background
+				button.style.color = getForegroundColor(hsl[2]) //change the button text color
+
+				container.appendChild(button) //add the button to the page
+			}
+		}
+
+		generateButtonsForPopularColors() // generate the buttons
+
+
+
+
+		// This function changes the background color of the body element to red
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorRed() {
+			document.body.style.backgroundColor = "red";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+		// This function changes the background color of the body element to white
+		// it also changes the color of the text for the heading, paragraph, and form to black
+		function backgroundColorWhite() {
+			document.body.style.backgroundColor = "white";
+			document.getElementById("heading").style.color = "#000";
+			document.getElementById("paragraph").style.color = "#000";
+			document.getElementById("form").style.color = "#000";
+		}
+
+		// This function changes the background color of the body element to blue
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorBlue() {
+			document.body.style.backgroundColor = "blue";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+		// This function changes the background color of the body element to yellow
+		// it also changes the color of the text for the heading, paragraph, and form to black
+		function backgroundColorYellow() {
+			document.body.style.backgroundColor = "#FFDF0D";
+			document.getElementById("heading").style.color = "#000";
+			document.getElementById("paragraph").style.color = "#000";
+			document.getElementById("form").style.color = "#000";
+		}
+
+		// This function changes the background color of the body element to green
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorGreen() {
+			document.body.style.backgroundColor = "green";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+		// This function changes the background color of the body element to purple
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorPurple() {
+			document.body.style.backgroundColor = "#A800FF";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+		// This function changes the background color of the body element to lime
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorLime() {
+			document.body.style.backgroundColor = "#32cd32";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+		// This function changes the background color of the body element to orange
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorOrange() {
+			document.body.style.backgroundColor = "#FF7F00";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+		// This function changes the background color of the body element to hot pink
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorHotPink() {
+			document.body.style.backgroundColor = "#FF1694";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+		// This function changes the background color of the body element to peach
+		// it also changes the color of the text for the heading, paragraph, and form to white
+		function backgroundColorPeach() {
+			document.body.style.backgroundColor = "#FC9483";
+			document.getElementById("heading").style.color = "#FFFFFF";
+			document.getElementById("paragraph").style.color = "#FFFFFF";
+			document.getElementById("form").style.color = "#FFFFFF";
+		}
+
+	</script>
+
+</body>
+
+</html>
