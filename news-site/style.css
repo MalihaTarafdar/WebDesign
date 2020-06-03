@@ -4,6 +4,7 @@
 	--accent-color: #91bad1;
 	--text-color: white;
 	--shadow-color: #313131;
+	--bg-color: white;
 }
 
 body {
@@ -123,7 +124,7 @@ button.sign-in {
 	transition: 0.3s;
 
 	border-style: none;
-	border: 1px solid rgba(144, 185, 208, 1);
+	border: 0px solid rgba(144, 185, 208, 1);
 	border-radius: 2em;
 }
 
@@ -161,18 +162,40 @@ button.sign-in:hover {
 	}
 }
 
-/* ====================MAIN CONTENT==================== */
-#container {
-	display: none;
-}
-
+/* ====================SIDEBAR==================== */
 #sidebar {
-	display: none;
+	position: absolute;
+	width: 20rem;
+	height: 100%;
+	padding: 1em;
+
+	display: flex;
+	flex-direction: column;
+
+	transition-duration: 500ms;
+
+	background-color: var(--bg-color);
+	box-shadow: 0px 0px 10px 2px var(--shadow-color);
+
 	border: 1px solid red;
 }
 
+#sidebar > .logo {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#sidebar > .logo > #sidebar-close {
+	border: none;
+	background: none;
+}
+
+/* ====================MAIN CONTENT==================== */
 #content {
 	display: flex;
+	display: none;
 	flex-direction: column;
 	align-items: center;
 	border: 1px solid red;
